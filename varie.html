@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Video</title>
+</head>
+<body>
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="video.html">Video</a> |
+    <a href="varie.html">Varie</a> 
+</nav> 
+<h1>Lorem Ipsum</h1>
+<section>
+  <audio controls>
+    <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+</section>
+<br>
+<section>
+  <p id="demo">Dove ti trovi?</p>
+  <button onclick="getLocation()">Prova!</button>
+  <script>
+    var x=document.getElementById("demo");
+    function getLocation(){
+      if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }else{
+        x.innerHTML= "Geolocalizzazione non supportata";
+      }
+    }
+    function showPosition(position){
+      x.innerHTML="Latitudine: " + position.coords.latitude +" Longitudine: " + position.coords.longitude; 
+    }
+  </script>
+</section>
+<br>
+<section>
+  <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+  </canvas> 
+  <script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(95,50,40,0,2*Math.PI);
+    ctx.stroke();
+    </script> 
+</section>
+<footer>
+    <h2>Contattaci</h2>
+    <form action="/action_page.php">
+      <label for="fname">Nome:</label><br>
+      <input type="text" id="fname" name="fname" value=""><br><br>
+      <label for="lname">Cognome:</label><br>
+      <input type="text" id="lname" name="lname" value=""><br><br>
+      <label for="number">Numero di telefono:</label><br>
+      <input type="text" id="number" name="number" value=""><br><br>
+      <label for="email">Email:</label><br>
+      <input type="text" id="email" name="email" value=""><br><br>
+      <input type="submit" value="Invia">
+</footer>
+</body>
+</html>
