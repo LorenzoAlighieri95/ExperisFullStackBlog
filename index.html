@@ -2,15 +2,16 @@
 <html>
 <head>
 <title>Blog Home</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.testo{
+    font-style: italic;
+}
+</style>
 </head>
 <body>
-<nav>
-    <a href="index.html">Home</a> |
-    <a href="video.html">Video</a> |
-    <a href="varie.html">Varie</a> 
-</nav> 
-<h1>Benvenuti nel blog</h1>
-<section>
+<section class="main">
+    <h1>Benvenuti nel B&B</h1>
     <header>
         <h1>Il tuo feed</h2>
     </header>
@@ -18,9 +19,9 @@
         <header>
             <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
         </header>
-        <img src="https://cf.bstatic.com/data/xphoto/1182x887/297/29799900.jpg?size=S" alt="Trulli" style="width:250px;height:250px;"> 
+        <img src="https://cf.bstatic.com/data/xphoto/1182x887/297/29799900.jpg?size=S" alt="Trulli" style="width:650px;height:500px;">    
         <aside>
-            <p>
+            <p class="testo">
                 Fusce eu tortor varius, scelerisque quam sed, sollicitudin quam. Sed in accumsan quam, sed dictum velit. Nunc nec vulputate magna. Nunc auctor gravida est sit amet volutpat.
             </p>
         </aside>
@@ -29,9 +30,9 @@
         <header>
             <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
         </header>
-        <img src="https://siviaggia.it/wp-content/uploads/sites/2/2020/05/Airbnb_ConPiscina_SanMicheleSalentino.jpg" alt="Trulli" style="width:250px;height:250px;"> 
+        <img src="https://siviaggia.it/wp-content/uploads/sites/2/2020/05/Airbnb_ConPiscina_SanMicheleSalentino.jpg" alt="Trulli" style="width:650px;height:500px;"> 
         <aside>
-            <p>
+            <p class="testo">
                 Fusce eu tortor varius, scelerisque quam sed, sollicitudin quam. Sed in accumsan quam, sed dictum velit. Nunc nec vulputate magna. Nunc auctor gravida est sit amet volutpat.
             </p>
         </aside>
@@ -40,14 +41,15 @@
         <header>
             <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
         </header>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ515iRx_2nl5CZk3XRTDORNJ7wDZ1yQ8cm5Q&usqp=CAU" alt="Trulli" style="width:250px;height:250px;"> 
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ515iRx_2nl5CZk3XRTDORNJ7wDZ1yQ8cm5Q&usqp=CAU" alt="Trulli" style="width:650px;height:500px;"> 
         <aside>
-            <p>
+            <p class="testo">
                 Fusce eu tortor varius, scelerisque quam sed, sollicitudin quam. Sed in accumsan quam, sed dictum velit. Nunc nec vulputate magna. Nunc auctor gravida est sit amet volutpat.
             </p>
         </aside>
     </article>
 </section> 
+<br>
 <footer>
     <h2>Contattaci</h2>
     <form action="/action_page.php">
@@ -61,5 +63,12 @@
       <input type="text" id="email" name="email" value=""><br><br>
       <input type="submit" value="Invia">
 </footer>
+<nav>
+    <ul class="nav">
+        <li><a href="index.html">Home</a></li> 
+        <li><a href="video.html">Video</a></li>
+        <li><a href="varie.html">Varie</a></li>
+    </ul>
+</nav> 
 </body>
 </html>
