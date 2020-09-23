@@ -3,17 +3,132 @@
 <head>
 <title>Blog Home</title>
 <link rel="stylesheet" href="style.css">
-<style>
-.testo{
-    font-style: italic;
-}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<section class="main">
-    <h1>Benvenuti nel B&B</h1>
+    <section class="main">
     <header>
-        <h1>Il tuo feed</h2>
+    <h2>The BNB blog</h2>
+    <h3>Feed</h3>
+    </header>
+                <div class="sfondo">
+                    <div class="testo"> 
+                        <h3 style="text-align: center;">Lorem ipsum</h3>
+                        <p class="paragrafo">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum magna sed hendrerit varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse hendrerit nunc vitae lobortis luctus. Fusce pharetra turpis nec pharetra fringilla. Cras tincidunt, enim ac porttitor condimentum, ante velit faucibus lorem, nec vehicula justo nisi id massa. Ut suscipit urna quis ligula sagittis, sit amet dictum erat congue. Mauris semper eleifend lorem vitae luctus. Suspendisse potenti.
+                        </p>
+                        <br>
+                        <div class="buttons">
+                            <button class="button like" onclick="likeFunction()"><i class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
+                            <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
+                            <button class="button"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
+                            <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
+                        </div>
+                        
+                        <div class="commentSection">
+                            <p class="comments">
+                               Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est. 
+                            </p>
+                            <input type="text" id="email" name="email" value="    Write a comment..."><br><br>
+                        </div>
+                    </div>
+                    <div class="immagini">
+                        <img class="foto" src="https://cf.bstatic.com/data/xphoto/1182x887/297/29799900.jpg?size=S">
+                    </div> 
+                </div>   
+    
+            <br>
+            <br>
+            <br>
+            <div class="sfondo">
+                <div class="testo"> 
+                    <h3 style="text-align: center;">Lorem ipsum</h3>
+                    <p class="paragrafo">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum magna sed hendrerit varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse hendrerit nunc vitae lobortis luctus. Fusce pharetra turpis nec pharetra fringilla. Cras tincidunt, enim ac porttitor condimentum, ante velit faucibus lorem, nec vehicula justo nisi id massa. Ut suscipit urna quis ligula sagittis, sit amet dictum erat congue. Mauris semper eleifend lorem vitae luctus. Suspendisse potenti.
+                    </p>
+                    <br>
+                    <div class="buttons">
+                        <button class="button like" onclick="likeFunction()"><i class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
+                        <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
+                        <button class="button"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
+                        <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
+                    </div>
+                    
+                    <div class="commentSection">
+                        <p class="comments">
+                           Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est. 
+                        </p>
+                        <input type="text" id="email" name="email" value="    Write a comment..."><br><br>
+                    </div>
+                </div>
+                <div class="immagini">
+                    <img class="foto" src="https://www.turismopeschici.it/guida/wp-content/uploads/2016/12/italy-90595_12801.jpg">
+                </div> 
+            </div>   
+
+            <br>
+            <br>
+            <br>
+            <div class="sfondo">
+                <div class="testo"> 
+                    <h3 style="text-align: center;">Lorem ipsum</h3>
+                    <p class="paragrafo">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum magna sed hendrerit varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse hendrerit nunc vitae lobortis luctus. Fusce pharetra turpis nec pharetra fringilla. Cras tincidunt, enim ac porttitor condimentum, ante velit faucibus lorem, nec vehicula justo nisi id massa. Ut suscipit urna quis ligula sagittis, sit amet dictum erat congue. Mauris semper eleifend lorem vitae luctus. Suspendisse potenti.
+                    </p>
+                    <br>
+                    <div class="buttons">
+                        <button class="button like" onclick="likeFunction()"><i class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
+                        <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
+                        <button class="button"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
+                        <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
+                    </div>
+                    
+                    <div class="commentSection">
+                        <p class="comments">
+                           Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est. 
+                        </p>
+                        <input type="text" id="email" name="email" value="    Write a comment..."><br><br>
+                    </div>
+                </div>
+                <div class="immagini">
+                    <img class="foto" src="https://static.trip101.com/paragraph_media/pictures/001/253/659/large/70b4ea96-ea7b-45e1-af7e-37a740dc0292.jpg?1530260732">
+                </div> 
+            </div>  
+    </section>      
+<br>
+<nav>
+    <ul class="nav">
+        <li><a href="index.html">Home</a></li> 
+        <li><a href="watch.html">Watch</a></li>
+        <li><a href="contactUs.html">Contact Us</a></li>
+    </ul>
+</nav> 
+</body>
+<script>
+    function commentFunction() {
+        var x = document.getElementsByClassName("commentSection");
+        for (i=0; i<x.length; i++){
+            if (x[i].style.display === "none") {
+                x[i].style.display = "block";
+            } else {
+                x[i].style.display = "none";
+            }
+        }
+    }
+    function likeFunction(){
+        var x = document.getElementsByClassName("button like");
+        for (i=0; i<x.length; i++){
+            if (x[i].style.color === "whitesmoke") {
+                x[i].style.color = "lightblue";
+            } else {
+                x[i].style.color = "whitesmoke";
+            }
+        }
+    }
+</script>
+</html>
+
+<!--
     </header>
     <article>
         <header>
@@ -49,26 +164,4 @@
         </aside>
     </article>
 </section> 
-<br>
-<footer>
-    <h2>Contattaci</h2>
-    <form action="/action_page.php">
-      <label for="fname">Nome:</label><br>
-      <input type="text" id="fname" name="fname" value=""><br><br>
-      <label for="lname">Cognome:</label><br>
-      <input type="text" id="lname" name="lname" value=""><br><br>
-      <label for="number">Numero di telefono:</label><br>
-      <input type="text" id="number" name="number" value=""><br><br>
-      <label for="email">Email:</label><br>
-      <input type="text" id="email" name="email" value=""><br><br>
-      <input type="submit" value="Invia">
-</footer>
-<nav>
-    <ul class="nav">
-        <li><a href="index.html">Home</a></li> 
-        <li><a href="video.html">Video</a></li>
-        <li><a href="varie.html">Varie</a></li>
-    </ul>
-</nav> 
-</body>
-</html>
+-->

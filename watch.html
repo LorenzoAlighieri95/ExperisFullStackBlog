@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Watch</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<section class="main">
+  <h2>Work in progress...</h2>
+  <div class="sfondo">
+    <h2>Listen Here</h2>
+    <audio controls>
+      <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+  </div>
+  <br>
+  <div class="sfondo">
+    <p id="demo">Where is the nearest bnb?</p>
+    <button onclick="getLocation()">Find your position</button>
+  </div>
+  <br>
+  <!--
+  <div class="sfondo">
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+    </canvas> 
+  </div>
+  <br>
+  -->
+  <div class="sfondo">
+    <h1>Look at this</h1>
+    <video width="620" height="440" controls>
+        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video> 
+  </div>
+<br>
+<nav>
+  <ul class="nav">
+      <li><a href="index.html">Home</a></li> 
+      <li><a href="watch.html">Watch</a></li>
+      <li><a href="contactUs.html">Contact Us</a></li>
+  </ul>
+</nav> 
+</body>
+<script>
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.arc(95,50,40,0,2*Math.PI);
+  ctx.stroke();
+
+  var x=document.getElementById("demo");
+  function getLocation(){
+      if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }else{
+        x.innerHTML= "Geolocalizzazione non supportata";
+      }
+    }
+  function showPosition(position){
+        x.innerHTML="Latitudine: " + position.coords.latitude +" Longitudine: " + position.coords.longitude; 
+  }
+</script> 
+</section>
+</html>
