@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
 <title>Contact Us</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<div class="mobile-container">
+    <div class="topnav">
+    <a href="index.html">Home</a>
+    <div id="myLinks">
+        <a href="watch.html">Watch</a>
+        <a href="contactUs.html">Contact Us</a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="burgerFunction()">
+        <i class="material-icons" style="font-size:30px;">dehaze</i>
+    </a>
+    </div>    
+</div>
 <section class="main">
+  <br>
   <div class="sfondo">
-    <h2>Contact Us</h2>
-    <h3>And book a lovely Bnb</h3>
+    <h5>Book a lovely Bnb!</h5>
+    <br>
     <form action="/action_page.php">
       <label for="fname">Name:</label><br>
       <input type="text" id="fname" name="fname" value=""><br><br>
@@ -18,7 +36,11 @@
       <input type="text" id="number" name="number" value=""><br><br>
       <label for="email">Email:</label><br>
       <input type="text" id="email" name="email" value=""><br><br>
-      <input type="submit" value="Submit">
+      <label for="formControlRange">Select a range price:   $</label><span id="rangeval">50</span>
+      <input type="range" class="form-control-range" id="formControlRange" onInput="$('#rangeval').html($(this).val())" style="margin:auto;"> <br>
+      <input type="submit" id="contactFormSubmitBtn" value="Submit">
+      <br>
+    </form>
   </div>
 
 </section>
@@ -30,6 +52,9 @@
       <li><a href="contactUs.html">Contact Us</a></li>
   </ul>
 </nav> 
-</nav> 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 </html>
