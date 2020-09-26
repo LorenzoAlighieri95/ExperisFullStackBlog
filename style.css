@@ -1,5 +1,5 @@
 body {
-    background-color:#202020;
+    background-color:whitesmoke;
     color:whitesmoke; 
     text-align:left;
     font-family: 'Lato', Arial, sans-serif;
@@ -17,8 +17,8 @@ body {
     background:#202020;
     font-size:150%;  
     font-family: 'Lato', Arial, sans-serif;
-    opacity: 0.95;
-    border-bottom: 0.5px solid lightgray;
+    border-bottom: 0.5px solid whitesmoke;
+    height:50px;
 }
 
 li {
@@ -27,14 +27,14 @@ li {
 
 li a {
     display: block;
-    color:lightgray;
+    color:whitesmoke;
     text-align: center;
     padding: 4px 20px;
     text-decoration: none;
 }
 
 li a:hover{
-   color:white;
+   color:lightgray;
 }
 
 .main {
@@ -43,8 +43,8 @@ li a:hover{
 }
 
 input[type=text] {
-    width: 350px;
-    height:30px;
+    width: 60%;
+    height:50px;
     -webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;
     border-style: solid;
@@ -55,7 +55,7 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    width: 450px;
+    width: 70%;
 }
 
 footer{
@@ -74,8 +74,7 @@ header{
     text-align: center;
 }
 
-
-input[type=submit] {
+#contactFormSubmitBtn {
     background: lightgray;
     color: black;
     border-style: outset;
@@ -88,16 +87,15 @@ input[type=submit] {
     padding:1%;
 }
     
-
 .sfondo {
-    width:75%;
-    height:500px;
+    width:50%;
     background-color: #242526;
     margin:auto;
     border-style: solid;
     border-color: #242526;
     border-radius: 5px;
     padding:1%;
+    text-align: center;
 }
 
 .testo{
@@ -122,6 +120,7 @@ input[type=submit] {
     width:95%;
     
 }
+
 .buttons{
     text-align: center;
 }
@@ -138,7 +137,7 @@ input[type=submit] {
     text-align: justify;
 }
 
-.comments{
+.media{
     border-style: solid;
     border-color: #242526;
     border-radius: 15px;
@@ -146,6 +145,7 @@ input[type=submit] {
     color:whitesmoke;
     padding:2%;
     font-size: 85%;
+    text-align:left;
 }
 
 .button{
@@ -154,19 +154,152 @@ input[type=submit] {
     color:whitesmoke;
     cursor: pointer; 
     position: relative;
-    z-index:2;
     padding:1.1%;
     margin:1%;
 }
 
 .button:hover{
     transform:Scale(1.2,1.2);
-    background-color:#3a3b3c;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: #3a3b3c;
+    
 }
 
 .button:active {
 	transform:translateY(10px) Scale(1.2,1.2); 
+}
+
+.submitComment{
+	border: none;
+    background-color:transparent;
+    color:whitesmoke;
+    cursor: pointer; 
+    position: absolute;
+    margin-top:3.5px;
+}
+
+.submitComment:hover{
+    transform:Scale(1.2,1.2);
+
+}
+
+.submitComment:active {
+	transform:translateY(10px) Scale(1.2,1.2); 
+}
+
+.mobile-container{
+    display:none;
+}
+
+.card{
+    background-color: #242526;
+    width:45%;
+    margin:auto;
+}
+
+.carousel-control-next,
+.carousel-indicators,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.modal-dialog{
+    color:black;
+}
+
+.form-control-range{
+    width:70%;
+}
+
+.hrSeparator{
+    border: 1px solid gray;
+}
+
+.post-title{
+    padding-top:1%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    background-color: #18191a;
+    overflow-x: hidden;
+    padding:0.5%;
+    padding-top: 5%;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: whitesmoke;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color:lightgray;
+  }
+  
+  
+  .sidenav_right{
+      right:0;
+      text-align: right;
+    }
+
+@media all and (max-width: 736px) { 
+
+    .card{
+        width:65%;
+    }
+    
+
+    .nav{
+        display: none;
+    }
+    
+    .mobile-container {
+        max-width: 100%;
+        margin: auto;
+        background:#2b2b2b;
+        color: whitesmoke;
+        display: block;
+    }
+    
+    .topnav {
+        overflow: hidden;
+        background:#2b2b2b;
+        position: relative;
+        font-size:150%;  
+        font-family: 'Lato', Arial, sans-serif;
+    }
+  
+    .topnav #myLinks {
+        display: none;
+    }
+      
+    .topnav a {
+        color: whitesmoke;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+    }
+      
+    .topnav a.icon {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0; 
+    }
+      
+    .topnav a:hover {
+        color:lightgray
+        
+    }  
+
+    .sidenav{
+        display:none;
+    }
+   
 }

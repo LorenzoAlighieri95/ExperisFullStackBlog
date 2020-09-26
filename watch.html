@@ -2,10 +2,29 @@
 <html>
 <head>
 <title>Watch</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<div class="mobile-container">
+  <div class="topnav">
+  <a href="index.html">Home</a>
+  <div id="myLinks">
+      <a href="watch.html">Watch</a>
+      <a href="contactUs.html">Contact Us</a>
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="burgerFunction()">
+      <i class="material-icons" style="font-size:30px;">dehaze</i>
+  </a>
+  </div>    
+</div>
 <section class="main">
-  <h2>Work in progress...</h2>
+  <div class="alert alert-danger" role="alert">
+    Work in progress...
+  </div>
   <div class="sfondo">
     <h2>Listen Here</h2>
     <audio controls>
@@ -33,6 +52,7 @@
       Your browser does not support the video tag.
     </video> 
   </div>
+</section>
 <br>
 <nav>
   <ul class="nav">
@@ -60,6 +80,5 @@
   function showPosition(position){
         x.innerHTML="Latitudine: " + position.coords.latitude +" Longitudine: " + position.coords.longitude; 
   }
-</script> 
-</section>
+</script>
 </html>
