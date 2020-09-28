@@ -22,20 +22,45 @@
         </div>    
     </div>
     <div class="sidenav">
-      <a href="#about">Lorem Ipsum</a>
-      <a href="#services">Dolor</a>
-      <a href="#clients">Sit Amet</a>
-      <a href="#contact">Suspendisse</a>
+      <a href=""><h5>You have <span id="spanPosts"></span> new posts</h5></a>
+      <br>
+      <a href="">Lorem Ipsum</a>
+      <a href="">Dolor</a>
+      <a href="">Sit Amet</a>
+      <a href="">Suspendisse</a>
     </div>
     
     <div class="sidenav sidenav_right">
+      <a href=""><h5>Check this</h5></a>
+      <br>
+      <section id=checkbox_container>
+        <div id=checkbox_one>
+          <label><input type="checkbox" class="checkbox" value="">  Option 1</label>
+        </div>
+        <div id=checkbox_two>
+          <label><input type="checkbox" class="checkbox" value="">  Option 2</label>
+        </div>
+        <div id=checkbox_three>
+          <label><input type="checkbox" class="checkbox" value="">  Option 3</label>
+        </div>
+        <div id=checkbox_four>
+          <label><input type="checkbox" class="checkbox" value="">  Option 4</label>
+        </div>
+      </section>
+      <br>
+      <section id="checked_container">
+        <h5 id="checked_title" style="display: none;">Checked</h5>
+        <br>
+
+      </section>
+
 
     </div>
     <div class="main">
                 <br>
-                <h4 style="text-align: center;">There are <span id="spanPosts"></span> new posts</h4>
+                
                 <br>
-                <div class="card">
+                <article class="card" id="card_1">
                   <h5 class="post-title" style="text-align: center;">Lorem ipsum <span class="badge badge-secondary">New post</span></h5>
                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                       <ol class="carousel-indicators">
@@ -67,7 +92,7 @@
                           <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
                           <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
                           <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
-                          <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
+                          <button class="button comment"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
                       </div>
                       <br>
                       <div class="commentSection">
@@ -82,16 +107,16 @@
                         </div>
                         <br>
                         <form action="" onsubmit="return false">
-                          <input type="text" id="commentTest" placeholder="    Write a comment...">
+                          <input type="text" class="comment_input" placeholder="    Write a comment...">
                           <button id="submitButton" class="submitComment"><i class="material-icons" style="font-size:40px;">send</i></button>
                           <br>
                         </form>
                       </div>
                   </div>
-                </div>
+                </article>
                 <br>
                 <br>
-                <div class="card">
+                <article class="card" id="card_2">
                   <h5 class="post-title" style="text-align: center;">Lorem ipsum <span class="badge badge-secondary">New post</span></h5>
                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                       <ol class="carousel-indicators">
@@ -123,7 +148,7 @@
                           <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
                           <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
                           <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
-                          <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
+                          <button class="button comment"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
                       </div>
                       <br>
                       <div class="commentSection">
@@ -138,13 +163,13 @@
                         </div>
                         <br>
                         <form action="" onsubmit="return false">
-                          <input type="text" id="commentTest" placeholder="    Write a comment...">
+                          <input type="text" class="comment_input" placeholder="    Write a comment...">
                           <button id="submitButton" class="submitComment"><i class="material-icons" style="font-size:40px;">send</i></button>
                           <br>
                         </form>
                       </div>
                   </div>
-                </div>
+                </article>
                 <br>
                 <br>
     </div>      
@@ -153,7 +178,7 @@
         <ul class="nav">
             <li><a href="index.html">Home</a></li> 
             <li><a href="watch.html">Watch</a></li>
-            <li><a href="contactUs.html">Contact Us</a></li>
+            <li><a href="contactUs.html">Contact Us</a></li>  
         </ul>
     </nav> 
     <!-- Modal -->
@@ -183,30 +208,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="script.js"></script>
 
     
     <script>
-        function commentFunction() {
-            var x = document.getElementsByClassName("commentSection");
-            for (i=0; i<x.length; i++){
-                if (x[i].style.display === "none") {
-                    x[i].style.display = "block";
-                } else {
-                    x[i].style.display = "none";
-                }
-            }
-        }
-        /*
-        function likeFunction(){
-            var x = document.getElementsByClassName("button like");
-            for (i=0; i<x.length; i++){
-                if (x[i].style.color === "whitesmoke") {
-                    x[i].style.color = "lightblue";
-                } else {
-                    x[i].style.color = "whitesmoke";
-                }
-            }
-        }*/
         function burgerFunction() {
             var x = document.getElementById("myLinks");
             if (x.style.display === "block") {
@@ -215,31 +222,6 @@
                 x.style.display = "block";
             }
         }
-    </script>
-    <script>
-      $(document).ready(function() {
-        var numberPosts = $(".card").length;
-        $("#spanPosts").html(numberPosts);
-
-        $("#submitButton").on("click", function(e) {    
-          e.preventDefault();
-          var input = $("#commentTest").val()
-          $(".comments").append("<div class='media'>"+
-                                "<img src='https://www.flaticon.com/svg/static/icons/svg/3408/3408556.svg' style='width:60px' class='align-self-start mr-3'>"+
-                                "<div class='media-body'>"+
-                                "<h5 class='mt-0'>Gianna</h5>"+
-                                input+
-                                "</div></div>")
-        })
-        $("#button_like").click(function(){
-            var color = $('#thumb_up').css("color")
-            if (color=="rgb(245, 245, 245)") {
-              $("#thumb_up").css("color", "lightblue");
-            } else {
-              $("#thumb_up").css("color", "whitesmoke");
-            }
-        });
-      });
     </script>
 </body>
 </html>

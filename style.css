@@ -4,6 +4,7 @@ body {
     text-align:left;
     font-family: 'Lato', Arial, sans-serif;
     height: 100%;
+    font-size:90%;
 }
 
 .nav {
@@ -226,26 +227,42 @@ header{
     background-color: #242526;
     overflow-x: hidden;
     padding:0.5%;
-    padding-top: 8.3%;
-  }
+    padding-top: 6%;
+    font-size: 120%;
+}
   
-  .sidenav a {
+.sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 120%;
     color: whitesmoke;
     display: block;
-  }
+}
   
-  .sidenav a:hover {
+.sidenav a:hover {
     color:lightgray;
-  }
-  
-  
-  .sidenav_right{
+}
+    
+.sidenav_right{
       right:0;
-      text-align: right;
-    }
+      text-align: center;   
+}
+
+.checkbox{
+    -webkit-appearance: none;
+	background-color: #fafafa;
+	border: 10px solid #cacece;
+    cursor: pointer;
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+.checkbox:checked {
+	border: 10px solid #ADD8E6;
+}
+
 
 @media all and (max-width: 736px) { 
 
