@@ -64,7 +64,7 @@
                     <p class="card-text">Suspendisse hendrerit nunc vitae lobortis luctus. Fusce pharetra turpis nec pharetra fringilla.Ut suscipit urna quis ligula sagittis, sit amet dictum erat congue. Mauris semper eleifend lorem vitae luctus. Suspendisse potenti. </p>
                     <hr class="hrSeparator">   
                     <div class="buttons">
-                          <button class="button like" onclick="likeFunction()"><i class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
+                          <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
                           <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
                           <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
                           <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
@@ -120,7 +120,7 @@
                     <p class="card-text">Suspendisse hendrerit nunc vitae lobortis luctus. Fusce pharetra turpis nec pharetra fringilla.Ut suscipit urna quis ligula sagittis, sit amet dictum erat congue. Mauris semper eleifend lorem vitae luctus. Suspendisse potenti. </p>
                     <hr class="hrSeparator">   
                     <div class="buttons">
-                          <button class="button like" onclick="likeFunction()"><i class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
+                          <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>
                           <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>
                           <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>
                           <button class="button" onclick="commentFunction()"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>
@@ -196,6 +196,7 @@
                 }
             }
         }
+        /*
         function likeFunction(){
             var x = document.getElementsByClassName("button like");
             for (i=0; i<x.length; i++){
@@ -205,7 +206,7 @@
                     x[i].style.color = "whitesmoke";
                 }
             }
-        }
+        }*/
         function burgerFunction() {
             var x = document.getElementById("myLinks");
             if (x.style.display === "block") {
@@ -230,6 +231,14 @@
                                 input+
                                 "</div></div>")
         })
+        $("#button_like").click(function(){
+            var color = $('#thumb_up').css("color")
+            if (color=="rgb(245, 245, 245)") {
+              $("#thumb_up").css("color", "lightblue");
+            } else {
+              $("#thumb_up").css("color", "whitesmoke");
+            }
+        });
       });
     </script>
 </body>

@@ -1,5 +1,5 @@
 body {
-    background-color:whitesmoke;
+    background-color:#18191a;
     color:whitesmoke; 
     text-align:left;
     font-family: 'Lato', Arial, sans-serif;
@@ -14,7 +14,7 @@ body {
     padding: 0;
     list-style-type: none;
     overflow: hidden;
-    background:#202020;
+    background:#18191a;
     font-size:150%;  
     font-family: 'Lato', Arial, sans-serif;
     border-bottom: 0.5px solid whitesmoke;
@@ -223,10 +223,10 @@ header{
     position: fixed;
     z-index: 0;
     top: 0;
-    background-color: #18191a;
+    background-color: #242526;
     overflow-x: hidden;
     padding:0.5%;
-    padding-top: 5%;
+    padding-top: 8.3%;
   }
   
   .sidenav a {
