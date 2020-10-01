@@ -16,10 +16,9 @@ body {
     list-style-type: none;
     overflow: hidden;
     background:#18191a;
-    font-size:150%;  
+    font-size:140%;  
     font-family: 'Lato', Arial, sans-serif;
-    border-bottom: 0.5px solid whitesmoke;
-    height:50px;
+    border-bottom: 0.1px solid whitesmoke;
 }
 
 li {
@@ -35,6 +34,7 @@ li a {
 }
 
 li a:hover{
+   text-decoration: none;
    color:lightgray;
 }
 
@@ -56,7 +56,6 @@ input[type=text] {
     height:45px;
     -webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;
-    
 }
 
 input[type=text]:focus {
@@ -159,8 +158,11 @@ header{
     color:whitesmoke;
     cursor: pointer; 
     position: relative;
-    padding:1.1%;
+    padding:1.5%;
     margin:1%;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 15px;
 }
 
 .button:hover{
@@ -169,7 +171,7 @@ header{
     border-style: solid;
     border-color: #3a3b3c;
     border-radius: 15px;
-    padding:2%;
+   
 }
 
 .button:active {
@@ -236,7 +238,7 @@ header{
     overflow-x: hidden;
     padding:0.5%;
     padding-top: 5%;
-    font-size: 115%;
+    font-size: 105%;
     text-align: center;
 }
   

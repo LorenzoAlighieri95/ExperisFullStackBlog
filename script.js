@@ -1,4 +1,24 @@
 $(document).ready(function() {
+  
+  $('.checkbox').click(function(e){
+    if($(this).prop("checked") == true){
+        var elemId = $(this).closest('div').attr('id');
+        item = $("#"+elemId)
+        $("#checked_title").show()
+        $("#checked_container").append(item)
+    } else {
+        var elemId = $(this).closest('div').attr('id');
+        item = $("#"+elemId)
+        $("#checkbox_container").append(item)
+    }   
+  }); 
+  
+
+  $("#submitNewPost").click(function(e){
+    articleController = new ArticleController();
+    articleController.getArticle();
+  }); 
+ /*
   var articles = []
   
   function Article(title, body, public, featured) {
@@ -128,19 +148,7 @@ $(document).ready(function() {
     }
     return badge;
   }
-
-  $('.checkbox').click(function(e){
-        if($(this).prop("checked") == true){
-            var elemId = $(this).closest('div').attr('id');
-            item = $("#"+elemId)
-            $("#checked_title").show()
-            $("#checked_container").append(item)
-        } else {
-            var elemId = $(this).closest('div').attr('id');
-            item = $("#"+elemId)
-            $("#checkbox_container").append(item)
-        }      
-  });    
+*/  
 });
 
   
