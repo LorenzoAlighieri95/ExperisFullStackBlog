@@ -1,11 +1,10 @@
 var articles = []
-//var modalBtn;
 
 class ArticleController{
   constructor(){
 
   }
-
+  
   getArticle(){
         var inputTitle = $("#newPostTitleInput").val();
         var inputText = $("#newPostTextInput").val();
@@ -16,50 +15,54 @@ class ArticleController{
         var article = new Article(inputTitle,inputText,publi,featured);
         articles.push(article);
         this.addArticle(article);
+        //this.articleManagement();
         this.closeModal();
         this.resetModal();
     }
 
     addArticle(article){
-        var HtmlArticle = this.createHtmlArticle(article.title,article.body,article.draft,article.featured);
+        var HtmlArticle = this.createHtmlArticle(article.title,article.body,article.draft,article.featured,article.id,article.tag);
+        
         if (article.featured){
             $(".main").prepend(HtmlArticle); 
         } else {
             $(".main").append(HtmlArticle); 
         }
+    }
 
-        $(".button.like").on("click",function(e){
-          var item =$(this);
-          var color = item.css("color");
-          if (color=="rgb(245, 245, 245)") {
-            item.css("color", "lightblue");
-          } else {
-            item.css("color", "whitesmoke");
-          }
-        });
-
-        $(".button.comment").on('click', function(e) {
-          var elemId = $(this).closest('article').attr('id');
-          var selector = "#" + elemId + " .commentSection"
-          if($(selector).is(":visible")){
-            $(selector).hide(1000);
-          }else{
-            $(selector).show(1000);
-          }
-        });
-
-        $(".submitComment").on("click", function(e) {    
-          e.preventDefault();
-          var elemId = $(this).closest('article').attr('id');  
-          var input = $("#"+elemId+" .comment_input").val()
-          var selector = "#" + elemId + " .comments"
-          $(selector).append("<div class='media'>"+
-                                "<img src='https://www.flaticon.com/svg/static/icons/svg/3408/3408556.svg' style='width:60px' class='align-self-start mr-3'>"+
-                                "<div class='media-body'>"+
-                                "<h5 class='mt-0'>Gianna</h5>"+
-                                input+
-                                "</div></div>")
-        });
+    articleManagement(){
+      $(".button.like").on("click",function(e){
+        var item =$(this);
+        var color = item.css("color");
+        if (color=="rgb(245, 245, 245)") {
+          item.css("color", "lightblue");
+        } else {
+          item.css("color", "whitesmoke");
+        }
+      });
+    
+      $(".button.comment").on('click', function(e) {
+        var elemId = $(this).closest('article').attr('id');
+        var selector = "#" + elemId + " .commentSection"
+        if($(selector).is(":visible")){
+          $(selector).hide(1000);
+        }else{
+          $(selector).show(1000);
+        }
+      });
+    
+      $(".submitComment").on("click", function(e) {    
+        e.preventDefault();
+        var elemId = $(this).closest('article').attr('id');  
+        var input = $("#"+elemId+" .comment_input").val()
+        var selector = "#" + elemId + " .comments"
+        $(selector).append("<div class='media'>"+
+                              "<img src='https://www.flaticon.com/svg/static/icons/svg/3408/3408556.svg' style='width:60px' class='align-self-start mr-3'>"+
+                              "<div class='media-body'>"+
+                              "<h5 class='mt-0'>Gianna</h5>"+
+                              input+
+                              "</div></div>")                      
+      });
     }
 
     getBadge(publi,featured){
@@ -74,20 +77,12 @@ class ArticleController{
         return badge;
     }
 
-    closeModal(){
-        $("#newPostModal").modal("hide");
-    }
-
-    resetModal(){
-        $("#newPostTitleInput").val("");
-        $("#newPostTextInput").val("");
-    }
-
-    createHtmlArticle(title,body,publi,featured){
-        var numberArticle =articles.length;
+    createHtmlArticle(title,body,publi,featured,id,tag){
+        //var numberArticle =articles.length;
         var badge = this.getBadge(publi,featured);
-        var htmlContent = '<br><article class="card" id="card_'+numberArticle+'">\
-                          <h5 class="post-title" style="text-align: center;">Lorem ipsum <span class="badge badge-secondary">'+badge+'</span></h5>\
+        if (tag) var tags = "<a href=''>#" + tag.join("</a>, <a href=''>#") + "</a>";
+        var htmlContent = '<br><article class="card" id="card_'+id+'">\
+                          <h5 class="post-title" style="text-align: center;">'+title+'  <span class="badge badge-secondary">'+badge+'</span></h5>\
                           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">\
                               <ol class="carousel-indicators">\
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>\
@@ -111,7 +106,7 @@ class ArticleController{
                               </a>\
                             </div>\
                           <div class="card-body">\
-                            <h5 class="card-title">'+title+'</h5>\
+                            <h5 class="card-title">'+tags+'</h5>\
                             <p class="card-text">'+body+'</p>\
                             <hr class="hrSeparator">\
                             <div class="buttons">\
@@ -141,5 +136,14 @@ class ArticleController{
                           </div>\
                       </article>';
         return htmlContent;
+    }
+
+    closeModal(){
+      $("#newPostModal").modal("hide");
+    }
+
+    resetModal(){
+        $("#newPostTitleInput").val("");
+        $("#newPostTextInput").val("");
     }
 }

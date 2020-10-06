@@ -275,7 +275,7 @@ header{
 }
 
 
-@media all and (max-width: 736px) { 
+@media all and (max-width: 991.98px) { 
 
     .card{
         width:65%;
