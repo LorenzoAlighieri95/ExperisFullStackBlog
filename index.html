@@ -121,12 +121,10 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-    <script src="controller/controller.js"></script>
     <script src="model/model.js"></script>
-    
-    
-
+    <script src="services/restController.js"></script>
+    <script src="controller/controller.js"></script>
+    <script src="main.js"></script>
     <script>
         function burgerFunction() {
             var x = document.getElementById("myLinks");
@@ -136,6 +134,19 @@
                 x.style.display = "block";
             }
         }
+
+        $('.checkbox').click(function(e){
+          if($(this).prop("checked") == true){
+              var elemId = $(this).closest('div').attr('id');
+              item = $("#"+elemId)
+              $("#checked_title").show()
+              $("#checked_container").append(item)
+          } else {
+              var elemId = $(this).closest('div').attr('id');
+              item = $("#"+elemId)
+              $("#checkbox_container").append(item)
+          }   
+        }); 
     </script>
 </body>
 </html>
