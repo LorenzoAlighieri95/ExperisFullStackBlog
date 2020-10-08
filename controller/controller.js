@@ -21,38 +21,39 @@ class ArticleController{
         var inputTitle = this.modalTitle.val();
         var inputText = this.modalBody.val();
         var publi = this.publicCheck.prop("checked");
-        var featured = this.featuredCheck.prop("checked")===true;
+        var featured = this.featuredCheck.prop("checked");
         var article = new Article(inputTitle,inputText,publi,featured);
         this.addArticle(article);
         this.postArticle(article);
+        //this.patchArticle(article);
+        //this.putArticle(article);
         this.closeModal();
         this.resetModal();  
         articleController.articleManagement();
       }.bind(this));
-      
-      this.getArticles();
-      
+      this.getArticles();  
     }.bind(this));
   }
 
   getArticles(){
     this.restController.get("https://texty-89895.firebaseio.com/posts.json",function(data,status,xhr){
-      var id = 0
+      var numId = 0
       for (var i in data){
-        id++;
+        numId++;
         var article = new Article();
         article.title = data[i].title;
         article.body = data[i].body;
         article.draft = data[i].public;
         article.featured = data[i].featured;
         article.tag = data[i].tag;
-        article.id = id;
+        article.id = i;
+        article.numId = numId;
         articleController.addArticle(article)
       }
       articleController.articleManagement();
     });
   }
-
+  
   postArticle(article){
     var obj = {
       body: article.body,
@@ -80,12 +81,39 @@ class ArticleController{
       tag: [""],
       title: article.title
     };
-    var myJSON = JSON.stringify(obj)
     this.restController.post("https://texty-89895.firebaseio.com/posts.json",myJSON,function(){
       console.log("ok")
     });
   }
   */
+
+  patchArticle(article){
+    var obj = {
+      body: article.body,
+      featured: article.featured,
+      public: article.draft,
+      tag: [""],
+      title: article.title
+    };
+    var url = "https://texty-89895.firebaseio.com/posts/"+article.id+".json";
+    this.restController.patch(url,obj,function(){
+      console.log("success");
+    });
+  }
+
+  putArticle(article){
+    var obj = {
+      body: article.body,
+      featured: article.featured,
+      public: article.draft,
+      tag: [""],
+      title: article.title
+    };
+    var url = "https://texty-89895.firebaseio.com/posts/"+article.id+".json";
+    this.restController.put(url,obj,function(){
+      console.log("success");
+    });
+  }
 
   addArticle(article){
     var HtmlArticle = this.createHtmlArticle(article.title,article.body,article.draft,article.featured,article.id,article.tag);  
@@ -173,7 +201,7 @@ class ArticleController{
                           </a>\
                         </div>\
                       <div class="card-body">\
-                        <h5 class="card-title">'+tag+'</h5>\
+                        <h5 class="card-title">'+tag+'</h5><button data-toggle="modal" data-target="#newPostModal">Modify post</button>\
                         <p class="card-text">'+body+'</p>\
                         <hr class="hrSeparator">\
                         <div class="buttons">\
@@ -210,7 +238,7 @@ class ArticleController{
   }
 
   resetModal(){
-      $("#newPostTitleInput").val("");
-      $("#newPostTextInput").val("");
+    $("#newPostTitleInput").val("");
+    $("#newPostTextInput").val("");
   }
 }
