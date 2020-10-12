@@ -36,14 +36,14 @@ class ArticleController{
   }
 
   getArticles(){
-    this.restController.get("https://texty-89895.firebaseio.com/posts.json",function(data,status,xhr){
+    this.restController.get("http://localhost:3000/articles",function(data,status,xhr){
       var numId = 0
       for (var i in data){
         numId++;
         var article = new Article();
         article.title = data[i].title;
         article.body = data[i].body;
-        article.draft = data[i].public;
+        article.draft = data[i].draf;
         article.featured = data[i].featured;
         article.tag = data[i].tag;
         article.id = i;
@@ -58,19 +58,22 @@ class ArticleController{
     var obj = {
       body: article.body,
       featured: article.featured,
-      public: article.draft,
-      tag: [""],
+      draft: article.draft,
+      //tag: [""],
       title: article.title
     };
     var myJSON = JSON.stringify(obj)
     $.ajax({
       type: "POST",
-      url: 'https://texty-89895.firebaseio.com/posts.json',
+      url: 'http://localhost:3000/articles',
       data: myJSON,
       success: console.log("ok"),
-      dataType: JSON
+      dataType: JSON,
+      contentType:"application/json"
     });
   }
+
+  
 
   /*
   postArticle(article){
@@ -91,7 +94,7 @@ class ArticleController{
     var obj = {
       body: article.body,
       featured: article.featured,
-      public: article.draft,
+      draft: article.draft,
       tag: [""],
       title: article.title
     };
@@ -105,8 +108,8 @@ class ArticleController{
     var obj = {
       body: article.body,
       featured: article.featured,
-      public: article.draft,
-      tag: [""],
+      draft: article.draft,
+      //tag: [""],
       title: article.title
     };
     var url = "https://texty-89895.firebaseio.com/posts/"+article.id+".json";
@@ -176,60 +179,42 @@ class ArticleController{
     if (Array.isArray(tag)) {
       tag = "<a href=''>#" + tag.join("</a>, <a href=''>#") + "</a>";
     }
-    var htmlContent = '<br><article class="card" id="card_'+id+'">\
-                      <h5 class="post-title" style="text-align: center;">'+title+'  <span class="badge badge-secondary">'+badge+'</span></h5>\
-                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">\
-                          <ol class="carousel-indicators">\
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>\
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>\
-                          </ol>\
-                          <div class="carousel-inner">\
-                            <div class="carousel-item active">\
-                              <img class="d-block w-100" src="https://cf.bstatic.com/data/xphoto/1182x887/297/29799900.jpg?size=S" alt="First slide">\
-                            </div>\
-                            <div class="carousel-item">\
-                              <img class="d-block w-100" src="https://www.turismopeschici.it/guida/wp-content/uploads/2016/12/italy-90595_12801.jpg" alt="Second slide">\
-                            </div>\
+      var htmlContent ='<br>\
+                        <article class="card" id="card_'+id+'">\
+                          <div style="padding:2%;">\
+                            <h5 class="post-title" ">'+title+'    <span class="badge badge-secondary">'+badge+'</span></h5><button style="position:absolute; margin-top:-8.5%; margin-left:88%;" class="button" data-toggle="modal" data-target="#newPostModal"><i class="material-icons" style="font-size:25px;">edit</i></button>\
                           </div>\
-                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">\
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\
-                            <span class="sr-only">Previous</span>\
-                          </a>\
-                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">\
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>\
-                            <span class="sr-only">Next</span>\
-                          </a>\
-                        </div>\
-                      <div class="card-body">\
-                        <h5 class="card-title">'+tag+'</h5><button data-toggle="modal" data-target="#newPostModal">Modify post</button>\
-                        <p class="card-text">'+body+'</p>\
-                        <hr class="hrSeparator">\
-                        <div class="buttons">\
-                              <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>\
-                              <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>\
-                              <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>\
-                              <button class="button comment"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>\
-                          </div>\
-                          <br>\
-                          <div class="commentSection">\
-                            <div class="comments">\
-                              <div class="media">\
-                                  <img src="https://www.flaticon.com/svg/static/icons/svg/3408/3408578.svg" style="width:60px" class="align-self-start mr-3" alt="...">\
-                                  <div class="media-body">\
-                                    <h5 class="mt-0">Ciccio</h5>\
-                                      Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est.\
-                                  </div>\
+                          <img src="https://source.unsplash.com/random/500x400" class="img-fluid" alt="Responsive image">\
+                          <div class="card-body">\
+                            <h5 class="card-title">'+tag+'</h5>\
+                            <p class="card-text">'+body+'</p>\
+                            <hr class="hrSeparator">\
+                            <div class="buttons">\
+                                  <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>\
+                                  <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>\
+                                  <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>\
+                                  <button class="button comment"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>\
                               </div>\
-                            </div>\
-                            <br>\
-                            <form action="" onsubmit="return false">\
-                              <input type="text" class="comment_input" placeholder="    Write a comment...">\
-                              <button id="submitButton" class="submitComment"><i class="material-icons" style="font-size:40px;">send</i></button>\
                               <br>\
-                            </form>\
+                              <div class="commentSection">\
+                                <div class="comments">\
+                                  <div class="media">\
+                                      <img src="https://www.flaticon.com/svg/static/icons/svg/3408/3408578.svg" style="width:60px" class="align-self-start mr-3" alt="...">\
+                                      <div class="media-body">\
+                                        <h5 class="mt-0">Ciccio</h5>\
+                                          Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est.\
+                                      </div>\
+                                  </div>\
+                                </div>\
+                                <br>\
+                                <form action="" onsubmit="return false">\
+                                  <input type="text" class="comment_input" placeholder="    Write a comment...">\
+                                  <button id="submitButton" class="submitComment"><i class="material-icons" style="font-size:40px;">send</i></button>\
+                                  <br>\
+                                </form>\
+                              </div>\
                           </div>\
-                      </div>\
-                  </article>';
+                      </article>';
     return htmlContent;
   }
 
