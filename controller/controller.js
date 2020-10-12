@@ -16,12 +16,13 @@ class ArticleController{
       this.modalBody = $("#newPostTextInput");
       this.publicCheck = $("#checkBoxPublic");
       this.featuredCheck = $("#checkBoxFeatured");
-    
+      
       this.modalBtn.click(function(e){
         var inputTitle = this.modalTitle.val();
         var inputText = this.modalBody.val();
         var publi = this.publicCheck.prop("checked");
         var featured = this.featuredCheck.prop("checked");
+        console.log("title ",inputTitle," text",inputText, " public ", publi, " featured ", featured)
         var article = new Article(inputTitle,inputText,publi,featured);
         this.addArticle(article);
         this.postArticle(article);
@@ -59,7 +60,7 @@ class ArticleController{
       body: article.body,
       featured: article.featured,
       draft: article.draft,
-      //tag: [""],
+      tag: [""],
       title: article.title
     };
     var myJSON = JSON.stringify(obj)
@@ -73,8 +74,11 @@ class ArticleController{
     });
   }
 
-  
+  deleteArticle(elemId){
+    
+    //alert(elemId);
 
+  }
   /*
   postArticle(article){
     var obj = {
@@ -98,7 +102,7 @@ class ArticleController{
       tag: [""],
       title: article.title
     };
-    var url = "https://texty-89895.firebaseio.com/posts/"+article.id+".json";
+    var url = "https://texty-89895.firebaseio.com/posts/"+article.id;
     this.restController.patch(url,obj,function(){
       console.log("success");
     });
@@ -117,9 +121,9 @@ class ArticleController{
       console.log("success");
     });
   }
-
+  
   addArticle(article){
-    var HtmlArticle = this.createHtmlArticle(article.title,article.body,article.draft,article.featured,article.id,article.tag);  
+    var HtmlArticle = this.createHtmlArticle(article);  
     if (article.featured){
         $(".main").prepend(HtmlArticle); 
     } else {
@@ -128,6 +132,13 @@ class ArticleController{
   }
 
   articleManagement(){
+    
+    $("#deleteBtn").on("click",function(e){
+      var elemId = $(this).closest('article').attr('id'); 
+      console.log(elemId)
+      deleteArticle(elemId)
+    });
+    
     $(".button.like").on("click",function(e){
       var item =$(this);
       var color = item.css("color");
@@ -174,47 +185,49 @@ class ArticleController{
     return badge;
   }
 
-  createHtmlArticle(title,body,publi,featured,id,tag){
-    var badge = this.getBadge(publi,featured);
-    if (Array.isArray(tag)) {
+  createHtmlArticle(article){
+    var badge = this.getBadge(article.draf,article.featured);
+    if (Array.isArray(article.tag)) {
       tag = "<a href=''>#" + tag.join("</a>, <a href=''>#") + "</a>";
     }
-      var htmlContent ='<br>\
-                        <article class="card" id="card_'+id+'">\
-                          <div style="padding:2%;">\
-                            <h5 class="post-title" ">'+title+'    <span class="badge badge-secondary">'+badge+'</span></h5><button style="position:absolute; margin-top:-8.5%; margin-left:88%;" class="button" data-toggle="modal" data-target="#newPostModal"><i class="material-icons" style="font-size:25px;">edit</i></button>\
+    var htmlContent ='<br>\
+                      <article class="card" id="'+article.id+'">\
+                        <div style="padding:2%;">\
+                          <h5 class="post-title" ">'+article.title+'    <span class="badge badge-secondary">'+badge+'</span></h5>\
+                          <button style="position:absolute; margin-top:-9%; margin-left:88%;" class="button" data-toggle="modal" data-target="#newPostModal"><i class="material-icons" style="font-size:28px;">edit</i></button>\
+                          <button id="deleteBtn" style="position:absolute; margin-top:-9%; margin-left:78%;" class="button" data-toggle="modal" data-target="#"><i class="material-icons" style="font-size:28px;">delete_outline</i></button>\
                           </div>\
-                          <img src="https://source.unsplash.com/random/500x400" class="img-fluid" alt="Responsive image">\
-                          <div class="card-body">\
-                            <h5 class="card-title">'+tag+'</h5>\
-                            <p class="card-text">'+body+'</p>\
-                            <hr class="hrSeparator">\
-                            <div class="buttons">\
-                                  <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>\
-                                  <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>\
-                                  <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>\
-                                  <button class="button comment"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>\
+                        <img src="https://source.unsplash.com/random/500x400" class="img-fluid" alt="Responsive image">\
+                        <div class="card-body">\
+                          <h5 class="card-title">'+article.tag+'</h5>\
+                          <p class="card-text">'+article.body+'</p>\
+                          <hr class="hrSeparator">\
+                          <div class="buttons">\
+                                <button id="button_like" class="button like"><i id="thumb_up" class="material-icons" style="font-size:25px;">thumb_up</i> Like</button>\
+                                <a href="contactUs.html"><button class="button"><i class="material-icons" style="font-size:25px;">book_online</i> Book</button></a>\
+                                <button class="button" data-toggle="modal" data-target="#exampleModal"><i class="material-icons" style="font-size:25px;">share</i>Share</button>\
+                                <button class="button comment"><i class="material-icons" style="font-size:25px;">comment</i> View Comments</button>\
+                            </div>\
+                            <br>\
+                            <div class="commentSection">\
+                              <div class="comments">\
+                                <div class="media">\
+                                    <img src="https://www.flaticon.com/svg/static/icons/svg/3408/3408578.svg" style="width:60px" class="align-self-start mr-3" alt="...">\
+                                    <div class="media-body">\
+                                      <h5 class="mt-0">Ciccio</h5>\
+                                        Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est.\
+                                    </div>\
+                                </div>\
                               </div>\
                               <br>\
-                              <div class="commentSection">\
-                                <div class="comments">\
-                                  <div class="media">\
-                                      <img src="https://www.flaticon.com/svg/static/icons/svg/3408/3408578.svg" style="width:60px" class="align-self-start mr-3" alt="...">\
-                                      <div class="media-body">\
-                                        <h5 class="mt-0">Ciccio</h5>\
-                                          Vivamus eros nisi, suscipit eget semper sed, pharetra sit amet est.\
-                                      </div>\
-                                  </div>\
-                                </div>\
+                              <form action="" onsubmit="return false">\
+                                <input type="text" class="comment_input" placeholder="    Write a comment...">\
+                                <button id="submitButton" class="submitComment"><i class="material-icons" style="font-size:40px;">send</i></button>\
                                 <br>\
-                                <form action="" onsubmit="return false">\
-                                  <input type="text" class="comment_input" placeholder="    Write a comment...">\
-                                  <button id="submitButton" class="submitComment"><i class="material-icons" style="font-size:40px;">send</i></button>\
-                                  <br>\
-                                </form>\
-                              </div>\
-                          </div>\
-                      </article>';
+                              </form>\
+                            </div>\
+                        </div>\
+                    </article>';
     return htmlContent;
   }
 
