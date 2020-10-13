@@ -1,3 +1,6 @@
+var editMode= false;
+var editedPostId = false
+
 class ArticleController{
   constructor(){
     this.restController = new RestController();
@@ -6,6 +9,8 @@ class ArticleController{
     this.modalBody;
     this.publicCheck;
     this.featuredCheck;
+    //this.editMode=false;
+    //this.editedPostId;
   }
   
   init(){
@@ -15,22 +20,31 @@ class ArticleController{
       this.modalTitle = $("#newPostTitleInput");
       this.modalBody = $("#newPostTextInput");
       this.publicCheck = $("#checkBoxPublic");
-      this.featuredCheck = $("#checkBoxFeatured");
-      
+      this.featuredCheck = $("#checkBoxFeatured");   
+        
       this.modalBtn.click(function(e){
-        var inputTitle = this.modalTitle.val();
-        var inputText = this.modalBody.val();
-        var publi = this.publicCheck.prop("checked");
-        var featured = this.featuredCheck.prop("checked");
-        console.log("title ",inputTitle," text",inputText, " public ", publi, " featured ", featured)
-        var article = new Article(inputTitle,inputText,publi,featured);
-        this.addArticle(article);
-        this.postArticle(article);
-        //this.patchArticle(article);
-        //this.putArticle(article);
-        this.closeModal();
-        this.resetModal();  
-        articleController.articleManagement();
+        if (editMode){
+          var inputTitle = this.modalTitle.val();
+          var inputText = this.modalBody.val();
+          var publi = this.publicCheck.prop("checked");
+          var featured = this.featuredCheck.prop("checked");
+          var article = new Article(inputTitle,inputText,publi,featured);
+          this.putArticle(article,editedPostId);
+          this.closeModal();
+          this.resetModal();  
+          articleController.articleManagement();
+        }else{
+          var inputTitle = this.modalTitle.val();
+          var inputText = this.modalBody.val();
+          var publi = this.publicCheck.prop("checked");
+          var featured = this.featuredCheck.prop("checked");
+          var article = new Article(inputTitle,inputText,publi,featured);
+          this.postArticle(article);
+          this.addArticle(article);
+          this.closeModal();
+          this.resetModal();  
+          articleController.articleManagement();
+        }
       }.bind(this));
       this.getArticles();  
     }.bind(this));
@@ -38,24 +52,23 @@ class ArticleController{
 
   getArticles(){
     this.restController.get("http://localhost:3000/articles",function(data,status,xhr){
-      var numId = 0
       for (var i in data){
-        numId++;
         var article = new Article();
         article.title = data[i].title;
         article.body = data[i].body;
-        article.draft = data[i].draf;
+        article.draft = data[i].draft;
         article.featured = data[i].featured;
         article.tag = data[i].tag;
-        article.id = i;
-        article.numId = numId;
+        article.id = data[i]._id;
         articleController.addArticle(article)
       }
       articleController.articleManagement();
+      $('.loader').hide();
     });
   }
   
   postArticle(article){
+    console.log(article.draft)
     var obj = {
       body: article.body,
       featured: article.featured,
@@ -63,62 +76,40 @@ class ArticleController{
       tag: [""],
       title: article.title
     };
-    var myJSON = JSON.stringify(obj)
-    $.ajax({
-      type: "POST",
-      url: 'http://localhost:3000/articles',
-      data: myJSON,
-      success: console.log("ok"),
-      dataType: JSON,
-      contentType:"application/json"
+    this.restController.post("http://localhost:3000/articles",obj,function(){
+      console.log("success")
+      $('.loader').hide();
+    });
+  }
+  
+  putArticle(article,id){
+    var obj = {}
+    for (var property in article) {
+      if (article[property]!==""&&article[property]!==undefined){
+        obj[property] = article[property];
+      }
+    }
+    var url = "http://localhost:3000/articles/"+id;
+    console.log("obj",obj)
+    console.log("url",url)
+    this.restController.put(url,obj,function(){
+      console.log("success"); //possibile bug
+      editMode=false;
+      editedPostId=null;
+      //location.reload();
+    },function(){
+      console.log("error");
+      editMode=false;
+      editedPostId=null;
+      //location.reload();
     });
   }
 
   deleteArticle(elemId){
-    
-    //alert(elemId);
-
-  }
-  /*
-  postArticle(article){
-    var obj = {
-      body: article.body,
-      featured: article.featured,
-      public: article.draft,
-      tag: [""],
-      title: article.title
-    };
-    this.restController.post("https://texty-89895.firebaseio.com/posts.json",myJSON,function(){
-      console.log("ok")
-    });
-  }
-  */
-
-  patchArticle(article){
-    var obj = {
-      body: article.body,
-      featured: article.featured,
-      draft: article.draft,
-      tag: [""],
-      title: article.title
-    };
-    var url = "https://texty-89895.firebaseio.com/posts/"+article.id;
-    this.restController.patch(url,obj,function(){
+    var url = 'http://localhost:3000/articles/'+elemId
+    this.restController.delete(url,function(){
       console.log("success");
-    });
-  }
-
-  putArticle(article){
-    var obj = {
-      body: article.body,
-      featured: article.featured,
-      draft: article.draft,
-      //tag: [""],
-      title: article.title
-    };
-    var url = "https://texty-89895.firebaseio.com/posts/"+article.id+".json";
-    this.restController.put(url,obj,function(){
-      console.log("success");
+      location.reload();
     });
   }
   
@@ -133,10 +124,15 @@ class ArticleController{
 
   articleManagement(){
     
-    $("#deleteBtn").on("click",function(e){
+    $(".deleteBtn").on("click",function(e){
       var elemId = $(this).closest('article').attr('id'); 
-      console.log(elemId)
-      deleteArticle(elemId)
+      articleController.deleteArticle(elemId);
+    });
+
+    $(".putBtn").on("click",function(e){
+      var elemId = $(this).closest('article').attr('id'); 
+      editMode=true;
+      editedPostId=elemId;
     });
     
     $(".button.like").on("click",function(e){
@@ -174,6 +170,7 @@ class ArticleController{
   }
 
   getBadge(publi,featured){
+    console.log(publi,featured)
     var badge = "";
     if (featured && publi) {
       badge = "Featured post";
@@ -186,18 +183,19 @@ class ArticleController{
   }
 
   createHtmlArticle(article){
-    var badge = this.getBadge(article.draf,article.featured);
+    var badge = this.getBadge(article.draft,article.featured);
     if (Array.isArray(article.tag)) {
       tag = "<a href=''>#" + tag.join("</a>, <a href=''>#") + "</a>";
     }
+    var img="https://source.unsplash.com/random/500x400";
     var htmlContent ='<br>\
                       <article class="card" id="'+article.id+'">\
                         <div style="padding:2%;">\
                           <h5 class="post-title" ">'+article.title+'    <span class="badge badge-secondary">'+badge+'</span></h5>\
-                          <button style="position:absolute; margin-top:-9%; margin-left:88%;" class="button" data-toggle="modal" data-target="#newPostModal"><i class="material-icons" style="font-size:28px;">edit</i></button>\
-                          <button id="deleteBtn" style="position:absolute; margin-top:-9%; margin-left:78%;" class="button" data-toggle="modal" data-target="#"><i class="material-icons" style="font-size:28px;">delete_outline</i></button>\
+                          <button class="button putBtn" style="position:absolute; margin-top:-9%; margin-left:88%;" data-toggle="modal" data-target="#newPostModal"><i class="material-icons" style="font-size:28px;">edit</i></button>\
+                          <button class="button deleteBtn" style="position:absolute; margin-top:-9%; margin-left:78%;" data-toggle="modal" data-target="#"><i class="material-icons" style="font-size:28px;">delete_outline</i></button>\
                           </div>\
-                        <img src="https://source.unsplash.com/random/500x400" class="img-fluid" alt="Responsive image">\
+                        <img src="'+img+'" class="img-fluid" alt="Responsive image">\
                         <div class="card-body">\
                           <h5 class="card-title">'+article.tag+'</h5>\
                           <p class="card-text">'+article.body+'</p>\

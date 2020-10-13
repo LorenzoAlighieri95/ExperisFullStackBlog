@@ -3,6 +3,7 @@ class RestController{
     }
 
     get(url,onSuccess,onError){
+        $('.loader').show();
         $.get({
             url: url,
             success: onSuccess
@@ -10,10 +11,13 @@ class RestController{
     }
 
     post(url,data,onSuccess,onError){
+        $('.loader').show();
         $.post({
             url: url,
             data:JSON.stringify(data),
-            success: onSuccess
+            error: onSuccess,      //Abbiamo un problema
+            dataType: JSON,
+            contentType:"application/json",
             });
     }
 
@@ -23,19 +27,24 @@ class RestController{
             url: url,
             data: JSON.stringify(data),
             processData: false,
-            contentType: 'application/json-patch+json',
+            contentType: 'application/merge-patch+json',
             success: onSuccess
         });         
     }
 
     put(url,data,onSuccess,onError){
+        
+        var myJson = JSON.stringify(data)
+
         $.ajax({
             type: 'PUT',
             url: url,
-            data: JSON.stringify(data),
+            data: myJson,
             processData: false,
-            contentType: 'application/json-patch+json',
-            success: onSuccess
+            dataType: JSON,
+            contentType:"application/json",
+            success: onSuccess,
+            error: onError
         });         
     }
 
