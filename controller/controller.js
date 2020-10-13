@@ -96,12 +96,12 @@ class ArticleController{
       console.log("success"); //possibile bug
       editMode=false;
       editedPostId=null;
-      //location.reload();
+      location.reload();
     },function(){
       console.log("error");
       editMode=false;
       editedPostId=null;
-      //location.reload();
+      location.reload();
     });
   }
 
